@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, session, url_for
 from flask_bootstrap import Bootstrap
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
@@ -22,9 +23,10 @@ app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 
 bootstrap = Bootstrap(app)
-moment = Moment(app)
 db = SQLAlchemy(app)
+mail = Mail(app)
 migrate = Migrate(app, db)
+moment = Moment(app)
 
 
 class Role(db.Model):
